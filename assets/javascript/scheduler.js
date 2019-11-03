@@ -38,3 +38,14 @@ $("#add-train").on("click", function (event) {
     $("#first-train").val("")
     $("#frequency").val("")
 });
+
+database.ref().on("child_added", function (childSnapshot) {
+    var trainName = childSnapshot.val().trainName;
+    var destination = childSnapshot.val().destination;
+    var firstTrain = childSnapshot.val().firstTrain;
+    var frequency = childSnapshot.val().frequency;
+
+    $("#my-table").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + "" + "</td><td>" + "" + "</td><tr>")
+}, function (errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+});

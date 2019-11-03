@@ -1,0 +1,24 @@
+#train-schedule {
+    margin: 40px;
+}
+
+#train-info {
+    margin: 40px;
+}
+
+#input-form {
+    margin: 30px;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+#header {
+    margin: 40px;
+    margin-top: 0px;
+}
+
+.jumbotron {
+    background-color: #7f462c;
+}

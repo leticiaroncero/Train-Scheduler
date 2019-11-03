@@ -7,7 +7,7 @@ var firebaseConfig = {
     messagingSenderId: "925635835251",
     appId: "1:925635835251:web:ef7f58d7aa2522355a4106",
     measurementId: "G-QR91SE5WT8"
-  };
+};
 
 firebase.initializeApp(firebaseConfig);
 
@@ -18,26 +18,23 @@ var destination = "";
 var firstTrain = "";
 var frequency = "";
 
-$("#add-train").on("click", function(event) {
+$("#add-train").on("click", function (event) {
     event.preventDefault();
 
-    // Grabbed values from text-boxes
     name = $("#train-name").val().trim();
     destination = $("#destination").val().trim();
     firstTrain = $("#first-train").val().trim();
     frequency = $("#frequency").val().trim();
 
-    // console.log(name)
-    // console.log(destination)
-    // console.log(firstTrain)
-    // console.log(frequency)
-
-    // // Code for "Setting values in the database"
     database.ref().push({
-      trainName: name,
-      destination: destination,
-      firstTrain: firstTrain,
-      frequency: frequency,
+        trainName: name,
+        destination: destination,
+        firstTrain: firstTrain,
+        frequency: frequency,
     });
 
-  });
+    $("#train-name").val("")
+    $("#destination").val("")
+    $("#first-train").val("")
+    $("#frequency").val("")
+});

@@ -33,10 +33,10 @@ $("#add-train").on("click", function (event) {
         frequency: frequency,
     });
 
-    $("#train-name").val("")
-    $("#destination").val("")
-    $("#first-train").val("")
-    $("#frequency").val("")
+    $("#train-name").val("");
+    $("#destination").val("");
+    $("#first-train").val("");
+    $("#frequency").val("");
 });
 
 database.ref().on("child_added", function (childSnapshot) {
@@ -45,7 +45,14 @@ database.ref().on("child_added", function (childSnapshot) {
     var firstTrain = childSnapshot.val().firstTrain;
     var frequency = childSnapshot.val().frequency;
 
-    $("#my-table").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + "" + "</td><td>" + "" + "</td><tr>")
+    var convertedTime = moment(firstTrain, "HH:mm");
+    var sinceFirstTrain = moment().diff(convertedTime, "minutes");
+    var sinceLastTrain = sinceFirstTrain % frequency;
+    var minutesAway = frequency - sinceLastTrain;
+    var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm");
+
+    $("#my-table").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextArrival + "</td><td>" + minutesAway + "</td><tr>");
+
 }, function (errorObject) {
     console.log("Errors handled: " + errorObject.code);
 });

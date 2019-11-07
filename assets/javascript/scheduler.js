@@ -53,6 +53,12 @@ database.ref().on("child_added", function (childSnapshot) {
     var minutesAway = frequency - sinceLastTrain;
     var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm A");
 
+    if (sinceFirstTrain < 0) {
+        // handle the case where the first train is in the future
+        minutesAway = convertedTime.diff(moment(), "minutes");
+        nextArrival = convertedTime.format("hh:mm A")
+    }
+
     $("#my-table").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextArrival + "</td><td>" + minutesAway + "</td><tr>");
 
 }, function (errorObject) {

@@ -21,22 +21,24 @@ var frequency = "";
 $("#add-train").on("click", function (event) {
     event.preventDefault();
 
-    name = $("#train-name").val().trim();
-    destination = $("#destination").val().trim();
-    firstTrain = $("#first-train").val().trim();
-    frequency = $("#frequency").val().trim();
+    if ($("#input-form")[0].reportValidity()) {
+        name = $("#train-name").val().trim();
+        destination = $("#destination").val().trim();
+        firstTrain = $("#first-train").val().trim();
+        frequency = $("#frequency").val().trim();
 
-    database.ref().push({
-        trainName: name,
-        destination: destination,
-        firstTrain: firstTrain,
-        frequency: frequency,
-    });
+        database.ref().push({
+            trainName: name,
+            destination: destination,
+            firstTrain: firstTrain,
+            frequency: frequency,
+        });
 
-    $("#train-name").val("");
-    $("#destination").val("");
-    $("#first-train").val("");
-    $("#frequency").val("");
+        $("#train-name").val("");
+        $("#destination").val("");
+        $("#first-train").val("");
+        $("#frequency").val("");
+    }
 });
 
 database.ref().on("child_added", function (childSnapshot) {

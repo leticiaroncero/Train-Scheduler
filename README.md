@@ -1,5 +1,7 @@
 # Train-Scheduler
 
+[Link to deployed site.](https://leticiaroncero.github.io/Train-Scheduler/)
+
 This web application incorporates Firebase to host arrival and departure data of various trains. Using Moment.js, the app calculates next arrival time and minutes to arrival.
 
 ## Technologies used
